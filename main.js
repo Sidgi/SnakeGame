@@ -1,6 +1,7 @@
 let body = document.querySelector('body');
 let canvas = document.getElementById('mainCanvas');
 let ctx = canvas.getContext("2d");
+let cell = 30;
 class CarachterClass{
     constructor(xAxis,yAxis,size,color){
         this.xAxis = xAxis;
@@ -10,10 +11,11 @@ class CarachterClass{
     }
 }
 class Snakes extends CarachterClass{
-    constructor(xAxis,yAxis,size,color,length,speed){
+    constructor(xAxis,yAxis,size,color,length,speed,movingHistory){
         super(xAxis,yAxis,size,color)
         this.length = length;
-        this.speed = speed;   
+        this.speed = speed;  
+        this.movingHistory = movingHistory; 
     }
     move(){
 
@@ -33,8 +35,8 @@ class Food extends CarachterClass{
     }
 }
 const random = Math.floor(Math.random()*500);
-const apple = new Food(random,random,28,'red');
-const mySnake = new Snakes(50,50,30,"black",5,null);
+const apple = new Food(random,random,cell-3,'red');
+const mySnake = new Snakes(cell*2,cell*2,cell,"black",5,null,[]);
 
 const drawFood = ()=>{
         ctx.beginPath();
@@ -48,8 +50,8 @@ const drawSnake = function(){
            for(let i = 1;i<mySnake.length;i++){
             ctx.beginPath();
             ctx.fillStyle = 'black';
-            ctx.fillRect(mySnake.xAxis+count,mySnake.yAxis,mySnake.size-3,mySnake.size-3);
-            count+=30;
+            ctx.fillRect(mySnake.xAxis+count,mySnake.yAxis,cell-3,cell-3);
+            count+=cell;
             }
 }
  const createCharacters = () =>{
@@ -60,17 +62,26 @@ const drawSnake = function(){
 const moveTheSnake = (event)=>{
     if(event.key === ('ArrowLeft'||'Left')){
         mySnake.speed = -1;
+
     }
     else if(event.key === ('ArrowRight'|| 'Right') ){
-        mySnake.speed = 1;
+        mySnake.speed =  1;
+
     }
     else if(event.key === ('ArrowUp'||'Up')){
-        mySnake.speed = 1;
+        mySnake.speed =  1;
+
     }
     else if(event.key === ('ArrowDown'||'Down')){
         mySnake.speed = -1;
+
     }
 }
-//document.addEventListener('keydown',moveTheSnake);
- document.querySelector('start').addEventListener('click',createCharacters)
-//  document.querySelector('move').addEventListener('click',moveSnake)
+ document.addEventListener('load',()={
+     setInterval(() => {
+
+     }, 150);
+ })
+ document.addEventListener('keydown',moveTheSnake);
+ document.querySelector('#start').addEventListener('click',createCharacters)
+//  document.querySelector('#move').addEventListener('click',moveSnake)
