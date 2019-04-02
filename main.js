@@ -11,17 +11,27 @@ class CarachterClass{
     }
 }
 class Snakes extends CarachterClass{
-    constructor(xAxis,yAxis,size,color,length,speed,movingHistory){
+    constructor(xAxis,yAxis,size,color,length,speedX,speedY,movingHistory){
         super(xAxis,yAxis,size,color)
         this.length = length;
-        this.speed = speed;  
+        this.speedX = speedX; 
+        this.speedY = speedY; 
         this.movingHistory = movingHistory; 
     }
     move(){
-
+        let newCell = {
+            xNewCell:this.xAxis+cell*speedX,
+            yNewCell:this.yAxis+cell*speedY
+        }
+        movingHistory.shift();
+        movingHistory.push(newCell);
     }
     eat(){
-
+        if(apple.xAxis===mySnake.xAxis && apple.yAxis === mySnake.yAxis){
+            apple.updatePosition();
+            this.movingHistory.push({xAxis:mySnake.xAxis,yAxis:mySnake.yAxis})
+            this.length++;
+        }
     }
 }
 class Food extends CarachterClass{
@@ -40,7 +50,6 @@ const mySnake = new Snakes(cell*2,cell*2,cell,"black",5,null,[]);
 
 const drawFood = ()=>{
         ctx.beginPath();
-        // ctx.fillStyle = apple.color;
         apple.updatePosition();
         ctx.fillRect(apple.xAxis,apple.yAxis,apple.size,apple.size);
 }
@@ -61,27 +70,31 @@ const drawSnake = function(){
  }
 const moveTheSnake = (event)=>{
     if(event.key === ('ArrowLeft'||'Left')){
-        mySnake.speed = -1;
+        mySnake.speedX = -1;
+        mySnake.speedY = 0;
 
     }
     else if(event.key === ('ArrowRight'|| 'Right') ){
-        mySnake.speed =  1;
+        mySnake.speedX = 1;
+        mySnake.speedY = 0;
 
     }
     else if(event.key === ('ArrowUp'||'Up')){
-        mySnake.speed =  1;
+        mySnake.speedX = 0;
+        mySnake.speedY = 1;
 
     }
     else if(event.key === ('ArrowDown'||'Down')){
-        mySnake.speed = -1;
+        mySnake.speedX = 0;
+        mySnake.speedY =-1;
 
     }
 }
- document.addEventListener('load',()={
-     setInterval(() => {
+//  document.addEventListener('load',()={
+//      setInterval(() => {
 
-     }, 150);
- })
+//      }, 150);
+//  })
  document.addEventListener('keydown',moveTheSnake);
  document.querySelector('#start').addEventListener('click',createCharacters)
 //  document.querySelector('#move').addEventListener('click',moveSnake)
