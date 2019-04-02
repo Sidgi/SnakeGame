@@ -37,8 +37,18 @@ class Food extends Snakes{
 const random = Math.floor(Math.random()*500);
 const food = new Food(random,random,'red');
 let mySnake = new Snakes(50,50,30,5,"black",8);
+
+const SnakeMove = function(){
+    let count = 0;
+           for(let i = 1;i<mySnake.length;i++){
+            ctx.beginPath();
+            ctx.fillstyle = 'black';
+            ctx.fillRect(mySnake.x+count,mySnake.y,mySnake.size-3,mySnake.size-3);
+            count+=30;
+            }
+}
  const createSnake = () =>{
-    mySnake.drawSnake();
+    setInterval(SnakeMove,100);
     food.create();
  }
 const moveTheSnake = (event)=>{
