@@ -1,55 +1,61 @@
 let body = document.querySelector('body');
 let canvas = document.getElementById('mainCanvas');
 let ctx = canvas.getContext("2d");
-class Snakes{
-    constructor(x,y,size,speed,color,length){
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.length = length;
+class CarachterClass{
+    constructor(xAxis,yAxis,size,color){
+        this.xAxis = xAxis;
+        this.yAxis = yAxis;
+        this.size =  size;
         this.color = color;
+    }
+}
+class Snakes extends CarachterClass{
+    constructor(xAxis,yAxis,size,color,length,speed){
+        super(xAxis,yAxis,size,color)
+        this.length = length;
         this.speed = speed;   
     }
-    drawSnake(){
-    let count = 0;
-       for(let i = 1;i<this.length;i++){
-        ctx.beginPath();
-        ctx.fillstyle = 'black';
-        ctx.fillRect(this.x+count,this.y,this.size-3,this.size-3);
-        count+=30;
-        }
+    move(){
+
     }
     eat(){
 
     }
 }
-class Food extends Snakes{
-    constructor(x,y,color){
-        super(x,y);
-         this.colorFood = 'red';
+class Food extends CarachterClass{
+    constructor(xAxis,yAxis,size,color,length,speed){
+        super(xAxis,yAxis,size,color);
     }
-    create(){
-        ctx.beginPath();
-        ctx.fillStyle = this.colorFood;
-        ctx.fillRect(this.x,this.y,28,28);
+    updatePosition(){
+        ctx.fillStyle = this.color;
+        this.xAxis = Math.floor(Math.random()*500);
+        this.yAxis = Math.floor(Math.random()*500);
     }
 }
 const random = Math.floor(Math.random()*500);
-const food = new Food(random,random,'red');
-let mySnake = new Snakes(50,50,30,5,"black",8);
+const apple = new Food(random,random,28,'red');
+const mySnake = new Snakes(50,50,30,"black",5,null);
 
-const SnakeMove = function(){
+const drawFood = ()=>{
+        ctx.beginPath();
+        // ctx.fillStyle = apple.color;
+        apple.updatePosition();
+        ctx.fillRect(apple.xAxis,apple.yAxis,apple.size,apple.size);
+}
+
+const drawSnake = function(){
     let count = 0;
            for(let i = 1;i<mySnake.length;i++){
             ctx.beginPath();
-            ctx.fillstyle = 'black';
-            ctx.fillRect(mySnake.x+count,mySnake.y,mySnake.size-3,mySnake.size-3);
+            ctx.fillStyle = 'black';
+            ctx.fillRect(mySnake.xAxis+count,mySnake.yAxis,mySnake.size-3,mySnake.size-3);
             count+=30;
             }
 }
- const createSnake = () =>{
-    setInterval(SnakeMove,100);
-    food.create();
+ const createCharacters = () =>{
+    drawSnake();
+    drawFood();
+    apple.updatePosition();
  }
 const moveTheSnake = (event)=>{
     if(event.key === ('ArrowLeft'||'Left')){
@@ -66,4 +72,5 @@ const moveTheSnake = (event)=>{
     }
 }
 //document.addEventListener('keydown',moveTheSnake);
- document.querySelector('button').addEventListener('click',createSnake)
+ document.querySelector('start').addEventListener('click',createCharacters)
+//  document.querySelector('move').addEventListener('click',moveSnake)
