@@ -135,7 +135,7 @@ function startGame(){
         drawSnake();
         drawFood();
          
-    },500)
+    },100)
     }
 
  document.addEventListener('load',startGame());
