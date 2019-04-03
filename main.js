@@ -4,9 +4,10 @@ let ctx = canvas.getContext("2d");
 let cell = 30;
 let count = 0;
 let initialPositionX = 2;
-let initialPositionY =2;
+let initialPositionY = 2;
 let canvasWidth = 600;
 let canvasHeight = 600;
+let score = 0;
 
 
 class CarachterClass{
@@ -51,7 +52,15 @@ class Snakes extends CarachterClass{
                 alert('you lost');
             }      
         }
-        this.movingHistory.shift();        
+        if(apple.xAxis === initialPositionX && apple.yAxis === initialPositionY){
+            score++;
+            apple.updatePosition();
+            scored = true;
+            this.length++;
+        }
+        else{
+            this.movingHistory.shift(); 
+        }
     }
     eat(){
         if(apple.xAxis===mySnake.xAxis && apple.yAxis === mySnake.yAxis){
@@ -61,24 +70,23 @@ class Snakes extends CarachterClass{
         }
     }
 }
-const mySnake = new Snakes(cell,"black",20,0,0,[]);
+const mySnake = new Snakes(cell,"black",3,0,0,[]);
 class Food extends CarachterClass{
     constructor(xAxis,yAxis,size,color,length,speed){
         super(xAxis,yAxis,size,color);
     }
     updatePosition(){
         ctx.fillStyle = this.color;
-        this.xAxis = Math.floor(Math.random()*(cell-3));
-        this.yAxis = Math.floor(Math.random()*(cell-3));
+        this.xAxis =  Math.floor(Math.random()*20);
+        this.yAxis =  Math.floor(Math.random()*20);
     }
 }
-const random = Math.floor(Math.random()*500);
+const random = Math.floor(Math.random()*20);
 const apple =  new Food(random,random,cell-3,'red');
 const drawFood = ()=>{
         ctx.beginPath();
-        // apple.updatePosition();
         ctx.fillStyle = 'red';
-        ctx.fillRect(apple.xAxis,apple.yAxis,apple.size,apple.size);
+        ctx.fillRect(apple.xAxis*cell,apple.yAxis*cell,apple.size,apple.size);
 }
 
 const drawSnake = function(){
@@ -127,14 +135,24 @@ const moveTheSnake = (event)=>{
 
     }
 }
+const drawScore = ()=>{
+    ctx.fillStyle = 'red';
+    ctx.font = `30px Arial`;
+    ctx.fillText(score,cell*2,cell*2);
+}
+const checkForWinner = ()=>{
+    // if(){
 
+    // }
+}
 function startGame(){
     setInterval(()=>{
         ctx.clearRect(0,0,canvasWidth,canvasHeight);
+        drawScore();
         mySnake.move();
         drawSnake();
-        drawFood();
-         
+        drawFood();  
+        checkForWinner();     
     },100)
     }
 
