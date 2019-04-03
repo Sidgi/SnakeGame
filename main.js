@@ -28,6 +28,18 @@ class Snakes extends CarachterClass{
     move(){
         initialPositionX+=this.speedX;
         initialPositionY+=this.speedY;
+        if(initialPositionX>20){
+            initialPositionX =0;
+        }
+        if(initialPositionX<0){
+            initialPositionX =20;
+        }
+        if(initialPositionY<0){
+            initialPositionY=20;
+        }
+        if(initialPositionY>20){
+            initialPositionY=0;
+        }
         let newCell = {
             x:initialPositionX,
             y:initialPositionY
