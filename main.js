@@ -44,9 +44,14 @@ class Snakes extends CarachterClass{
             x:initialPositionX,
             y:initialPositionY
         }   
-        this.movingHistory.shift();
         this.movingHistory.push(newCell);
-        
+        ///checking for collision
+        for(let i=0;i<this.movingHistory.length-1;i++){
+            if(this.movingHistory[i].x===initialPositionX&&this.movingHistory[i].y ===initialPositionY){
+                alert('you lost');
+            }      
+        }
+        this.movingHistory.shift();        
     }
     eat(){
         if(apple.xAxis===mySnake.xAxis && apple.yAxis === mySnake.yAxis){
@@ -56,7 +61,7 @@ class Snakes extends CarachterClass{
         }
     }
 }
-const mySnake = new Snakes(cell,"black",5,0,0,[]);
+const mySnake = new Snakes(cell,"black",20,0,0,[]);
 class Food extends CarachterClass{
     constructor(xAxis,yAxis,size,color,length,speed){
         super(xAxis,yAxis,size,color);
@@ -122,14 +127,15 @@ const moveTheSnake = (event)=>{
 
     }
 }
+
 function startGame(){
     setInterval(()=>{
         ctx.clearRect(0,0,canvasWidth,canvasHeight);
+        mySnake.move();
         drawSnake();
         drawFood();
-        mySnake.move(); 
-    },100)
-    // checkForCollision();
+         
+    },500)
     }
 
  document.addEventListener('load',startGame());
