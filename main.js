@@ -75,14 +75,16 @@ const drawSnake = function(){
                 }
             }
             else if(mySnake.movingHistory.length === mySnake.length){
-                // for(index in mySnake.movingHistory){
-                //     ctx.fillRect() 
-                // }
-                    mySnake.movingHistory.forEach(element=>{
-                    ctx.fillRect(element.x*cell,element.y*cell,cell-3,cell-3);
-                })
-            }        
-           
+                    if(mySnake.speedX || mySnake.speedY){
+                        mySnake.movingHistory.forEach(element=>{
+                        ctx.fillRect(element.x*cell,element.y*cell,cell-3,cell-3); })
+                    } 
+                    else {
+                        mySnake.speedX = 1;
+                        mySnake.movingHistory.forEach(element=>{
+                        ctx.fillRect(element.x*cell,element.y*cell,cell-3,cell-3); })
+                    }
+            }           
 }
 
 
