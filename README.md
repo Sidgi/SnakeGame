@@ -39,8 +39,9 @@ References:
 3) MDN
 4) Google
 I am planning to foresee the problem with reading books, use resources such as eloiqueant js, Youtube and Google, and MDN.
+
 ##Deployment
-This project is availableat: [http://snake-game-sidgi.surge.sh] (http://snake-game-sidgi.surge.sh)
+This project is available at: [http://snake-game-sidgi.surge.sh](http://snake-game-sidgi.surge.sh)
 ![IMG-1022](https://user-images.githubusercontent.com/39839481/55360497-8a1b7080-54a2-11e9-870e-170b847715b9.JPG)
 ![IMG-1023](https://user-images.githubusercontent.com/39839481/55360498-8a1b7080-54a2-11e9-817c-b6dd4f04b92c.JPG)
 ![IMG-1024](https://user-images.githubusercontent.com/39839481/55360499-8a1b7080-54a2-11e9-8c11-370e75c0347a.JPG)
