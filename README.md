@@ -1,21 +1,25 @@
 # SnakeGame
+
 Level 1
 1) Snake wins when it gets 10pts;
 2) After collision with square it absorbs that square and becomes bigger on the size of that square and gets 1pts for each 
 square;
 3) It looses after it hits itself;
+
 Level 2
 1) Snake wins when it gets 10pts;
 2) After collision with square it absorbs that square and becomes bigger on the size of that square and gets 1pts for each 
 square;
 3) It looses after it hits itself;
 4) Speed faster
+
 Level 3
 1) Snake wins when it gets 10pts;
 2) After collision with square it absorbs that square and becomes bigger on the size of that square and gets 1pts for each  
 square;
 3) It looses after it hits itself or hits the border;
 4) Speed faster
+
 Difficulties:
 1) Learning canvas;
 2) Link the keyboard keys to actual movement of the snake;
