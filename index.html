@@ -2,16 +2,38 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Arbutus" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Snake Game</title>
-    <link rel="stylesheet" href="main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
 </head>
 <body>
-    <img id="snakeImage" src="snake.jpg" alt="">
-    <canvas id="mainCanvas" width="600px" height="600px" style="border:1px solid black; margin: 0 auto;"></canvas>
-    <script src="main.js"></script>
+    <canvas id="mainCanvas"></canvas>
+    <div id="outerModal">
+        <div id="innerModal">
+            <img id='snakeImg' src="images/snakeStart.png" alt="snake" title="snake">
+            <button id='removeModal'></button>    
+        </div>
+    </div>  
+    <div id="outerWinContent">
+        <div id="winButtons">
+            <button id='restartGame'>Restart Game</button>
+            <button id="nextLevel" onclick="changeLevel()">Next Level</button>
+        </div>  
+    </div>
+    <div id="outerGameOver">
+        <div id='gameOverModal'>
+            <h1 id="gameOverSign">GAME OVER</h1>
+            <button id='restartGame' onclick="restartGame();">Restart Game</button>
+        </div>
+        <img src="images/snakeDie.png" id="snakeDie">
+    </div>
+    <div id="finishedThirdLevel">
+        <h1 id="signWinner">WINNER</h1>
+        <img  src="images/win.gif">
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
