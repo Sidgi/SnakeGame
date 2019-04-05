@@ -21,7 +21,7 @@ let initialPositionY = 9;
 let gameStatus;
 let gamePaused = false;
 let level = 1;
-let setIntervalSpeed = 350;
+let setIntervalSpeed = 250;
 let  mobileInterface = false;
 const playSounds = (filePath)=>{
 let mediaSound = new Audio(filePath);
@@ -278,20 +278,20 @@ document.addEventListener('touchstart',(event)=>{
   touchStartCoordinatesY = event.touches[0].clientY;
 });
 const moveSnakeTouchPad = (direction)=>{
-  if (direction ==='up' && mySnake.speedY !== 1) {
+  if (direction ==='up' && mySnake.speedY !== -1) {
     mySnake.speedX = 0;
-    mySnake.speedY = -1;
+    mySnake.speedY = 1;
   }
-  if(direction ==='down' && mySnake.speedY !== -1){
+  if(direction ==='down' && mySnake.speedY !== 1){
     mySnake.speedX = 0;
-    mySnake.speedY =1;
+    mySnake.speedY =-1;
   }
-  if(direction ==='left' && mySnake.speedX !== 1){
-    mySnake.speedX = -1;
+  if(direction ==='left' && mySnake.speedX !== -1){
+    mySnake.speedX = 1;
     mySnake.speedY =0;
   }
-  if(direction ==='right' && mySnake.speedX !== -1){
-    mySnake.speedX = 1;
+  if(direction ==='right' && mySnake.speedX !== 1){
+    mySnake.speedX = -1;
     mySnake.speedY =0;
   }
 }
