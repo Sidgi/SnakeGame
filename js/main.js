@@ -8,7 +8,7 @@ canvas.width = canvas.height = "608";
 let canvasWidth = canvas.width;
 let canvasHeight = canvas.height;
 let initialSnakeLength = 1;
-let winningScore = 1;
+let winningScore = 10;
 canvas.style.margin = '0 auto';
 canvas.style.border = '10px solid black';
 let ctx = canvas.getContext("2d");
